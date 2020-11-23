@@ -1,0 +1,34 @@
+<div id="topLinks">
+   <a href="/"> Home</a>
+</div>
+<div id="forms">
+   <form action="/auth/signup" method="POST">
+      <h1>Bloody Well Sign Up</h1>
+      <div id="formLine">
+         <label for="username">Username*</label>
+         <input type="text" name="username" placeholder="Your username" id="username">
+      </div>
+      <div id="formLine">
+         <label for="password">Password*</label>
+         <input type="password" id="password" name="password" placeholder="Your password">
+      </div>
+      <div id="formLine">
+         <label for="email">Email*</label>
+         <input type="text" id="email" name="email" placeholder="Your email">
+      </div>
+      <div id="formLine">
+         <label for="bio">Bio</label>
+         <input type="text" id="bio" name="bio" placeholder="Your bio (optional)">
+      </div>
+      <div id="formLine">
+         <label for="location">Location</label>
+         <input type="text" id="location" name="location" placeholder="Your location (optional)">
+      </div>
+      <button type="submit">Sign Up</button>
+   </form>
+   <p> Sections marked with a * are mandatory.</p>
+</div>
+{{!-- same as the login page --}}
+{{#if errorMessage}}
+<h3 style='color: red'>{{errorMessage}}</h3>
+{{/if}}

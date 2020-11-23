@@ -1,0 +1,56 @@
+<h1>Welcome to your settings page</h1>
+
+<div>
+    <h2>Update your user profile</h2>
+    <form action="/update-settings" method="POST">
+
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" value="{{user.username}}">
+        <br>
+
+        <label for="">Bio</label>
+        <input type="text" name="bio" value="{{user.bio}}">
+        <br>
+
+        <label for="">Location</label>
+        <input type="text" name="location" value="{{user.location}}">
+        <br>
+
+        <button type="submit">Update your profile</button>
+
+    </form>
+</div>
+
+<br>
+
+<div>
+    <h2>Update your password</h2>
+    <form action="/update-password" method="POST">
+
+        <label>Current password</label>
+        <input type="password" name="oldPassword">
+        <br>
+
+        <label>New password</label>
+        <input type="password" name="newPassword">
+        <br>
+
+        <label>Confirm new password</label>
+        <input type="password" name="confirmPassword">
+        <br>
+
+        <button type="submit">Update your password</button>
+
+    </form>
+</div>
+
+{{#if errorMessage}}
+<p>{{errorMessage}}</p>
+{{/if}}
+
+{{#if message}}
+<p>{{message}}</p>
+{{/if}}
+
+
+<!-- PROFILE IMG? -->
