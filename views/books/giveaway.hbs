@@ -3,14 +3,14 @@
 <h2>This is {{user.username}}'s available books</h2>
 
 {{#each user.booksToGive}}
-
-<h4>Title: <a href="/book">{{this.title}}</a></h4>
+<!-- IMG HERE MAYBE-->
+<p>Title: <a href="/book">{{this.title}}</a> </p>
 <p>Author: {{this.author}}</p>
-<p>Genre: {{this.genre}}</p>
 <p>Condition: {{this.condition}}</p>
+<p>Genre: {{this.genre}}</p>
 <a href="/book/edit/{{this._id}}">Edit book</a>
 <a href="/book/delete/{{this._id}}">Delete book</a>
-<br>
+</br>
 {{/each}}
 
 <a href="/new-book">Upload a new book</a>
