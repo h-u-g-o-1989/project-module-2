@@ -13,6 +13,11 @@ const requestSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: `Book`,
   },
+  status: {
+    type: String,
+    enum: ["Accepted", "Declined", "Pending"],
+    default: "Pending",
+  },
 });
 const Request = mongoose.model(`Request`, requestSchema);
 module.exports = Request;
