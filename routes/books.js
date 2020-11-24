@@ -101,4 +101,12 @@ router.get("/book/delete/:bookID", (req, res) => {
   });
 });
 
+router.get("/book/:bookID", (req, res) => {
+  const { bookID } = req.params;
+  console.log("Book ID = " + bookID);
+  Book.findById(bookID).then((foundBook) => {
+    res.render("books/book", { book: foundBook });
+  });
+});
+
 module.exports = router;

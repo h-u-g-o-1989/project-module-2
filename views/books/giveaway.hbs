@@ -4,12 +4,12 @@
 
 {{#each user.booksToGive}}
 <!-- IMG HERE MAYBE-->
-<p>Title: <a href="/book">{{this.title}}</a> </p>
+<p>Title: <a href="/book/{{this._id}}">{{this.title}}</a> </p>
 <p>Author: {{this.author}}</p>
 <p>Condition: {{this.condition}}</p>
 <p>Genre: {{this.genre}}</p>
-<a href="/book/edit/{{this._id}}">Edit book</a>
-<a href="/book/delete/{{this._id}}">Delete book</a>
+<button><a href="/book/edit/{{this._id}}">Edit book</a></button>
+<button><a href="/book/delete/{{this._id}}">Delete book</a></button>
 </br>
 {{/each}}
 
