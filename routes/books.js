@@ -49,11 +49,7 @@ router.post("/new-book", (req, res) => {
     requests,
     owner: req.session.user._id,
   }).then((createdBook) => {
-    Book.findById(createdBook._id)
-      .populate("owner")
-      .exec((err, populatedBook) => {
-        console.log("Populated Book: " + populatedBook);
-      });
+    //console.log("The book you just added to your giveaway list is:", createdBook)
     // after you create a post, the property author was added to it, but the user is not aware of that, so we must edit the user and the post to the user's posts array
     User.findByIdAndUpdate(
       req.session.user._id,
@@ -104,9 +100,12 @@ router.get("/book/delete/:bookID", (req, res) => {
 router.get("/book/:bookID", (req, res) => {
   const { bookID } = req.params;
   console.log("Book ID = " + bookID);
-  Book.findById(bookID).then((foundBook) => {
-    res.render("books/book", { book: foundBook });
-  });
+  Book.findById(bookID)
+    .populate("owner")
+    .then((foundBook) => {
+      console.log("Found book: ", foundBook);
+      res.render("books/book", { book: foundBook });
+    });
 });
 
 module.exports = router;
