@@ -3,11 +3,6 @@ const router = express.Router();
 const User = require("../models/User.model");
 const bcrypt = require("bcryptjs");
 
-/*router.get("/:_id", (req, res) => {
-  const { user } = req.session;
-  res.render("user/profile", { user });
-});*/
-
 router.get("/update-settings", (req, res) => {
   const { user } = req.session;
   res.render("user/settings", { user });
