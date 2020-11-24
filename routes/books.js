@@ -11,7 +11,12 @@ router.get("/books/wish-list", (req, res) => {
 // DISPLAY BOOKS TO GIVE AWAY
 router.get("/books/giveaway", (req, res) => {
   const { user } = req.session;
-  res.render("books/giveaway", { user });
+  const populatedUser = User.findById(user._id)
+    .populate("booksToGive")
+    .then((populatedUser) => {
+      //console.log("User: ", populatedUser);
+      res.render("books/giveaway", { user: populatedUser });
+    });
 });
 
 // CREATING NEW BOOK (FORM)
@@ -23,9 +28,9 @@ router.get("/new-book", (req, res) => {
   res.render("books/new-book");
 });
 
-const findBooksbyOwner = (userId) => {
-  return Book.find(userId);
-};
+// const findBooksbyOwner = (userId) => {
+// return Book.find(userId);
+// };
 
 router.post("/new-book", (req, res) => {
   // If not logged in
@@ -44,8 +49,12 @@ router.post("/new-book", (req, res) => {
     requests,
     owner: req.session.user._id,
   }).then((createdBook) => {
+    Book.findById(createdBook._id)
+      .populate("owner")
+      .exec((err, populatedBook) => {
+        console.log("Populated Book: " + populatedBook);
+      });
     // after you create a post, the property author was added to it, but the user is not aware of that, so we must edit the user and the post to the user's posts array
-    console.log("createdBook:", createdBook);
     User.findByIdAndUpdate(
       req.session.user._id,
       {
@@ -53,11 +62,42 @@ router.post("/new-book", (req, res) => {
       },
       { new: true }
     ).then((newAndUpdatedUser) => {
-      const books = findBooksbyOwner(newAndUpdatedUser);
-      //console.log(`ITS HERE HUGOOO` + books);
-      console.log("newAndUpdatedUser:", newAndUpdatedUser);
+      //console.log("Books to give:", newAndUpdatedUser.booksToGive);
       res.redirect("/books/giveaway");
     });
+  });
+});
+
+//EXPERIMENTAL STUFF - HOLY HELL THIS ONE WORKS
+
+router.get("/book/edit/:bookID", (req, res) => {
+  const { bookID } = req.params;
+  //console.log("req.params in the get: ", bookID);
+  Book.findById(bookID).then((bookToEdit) => {
+    //console.log(bookToEdit);
+    res.render("books/edit", { bookToEdit });
+  });
+});
+
+router.post("/book/edit/:bookID", (req, res) => {
+  const { bookID } = req.params;
+  const { author, title, genre, condition } = req.body;
+  //console.log("bookID: ", bookID);
+  Book.findByIdAndUpdate(bookID, { author, title, genre, condition }).then(
+    (editedBook) => {
+      res.redirect("/books/giveaway");
+    }
+  );
+});
+
+router.get("/book/delete/:bookID", (req, res) => {
+  const { bookID } = req.params;
+  console.log("bookID: ", bookID);
+  Book.findByIdAndDelete(bookID, () => {
+    console.log("Book removed");
+  }).then((removedBook) => {
+    console.log("Removed book: ", removedBook);
+    res.redirect("/books/giveaway");
   });
 });
 
