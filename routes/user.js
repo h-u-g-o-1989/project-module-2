@@ -96,4 +96,11 @@ router.get("/profile", (req, res) => {
   res.render("user/profile", { user });
 });
 
+router.get("/user/:userID", (req, res) => {
+  const { userID } = req.params;
+  User.findById(userID).then((foundUser) => {
+    res.render("user/user", { user: foundUser });
+  });
+});
+
 module.exports = router;
