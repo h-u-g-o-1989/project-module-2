@@ -10,13 +10,7 @@
       <p class="p-card">Condition: {{this.condition}}</p>
       <p class="p-card">Owner: <a href="/user/{{this.owner._id}}">{{this.owner.username}}</a></p>
 
-      <form action="/request/{{this._id}}" method="POST">
-        <button>REQUEST</button>
-      </form>
-
     </div>
   </section>
-
-  <br />
   {{/each}}
 </section>

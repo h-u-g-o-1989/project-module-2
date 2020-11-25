@@ -63,8 +63,6 @@ router.post("/new-book", (req, res) => {
   });
 });
 
-//EXPERIMENTAL STUFF - HOLY HELL THIS ONE WORKS
-
 router.get("/book/edit/:bookID", (req, res) => {
   const { bookID } = req.params;
   //console.log("req.params in the get: ", bookID);
@@ -98,7 +96,7 @@ router.get("/book/delete/:bookID", (req, res) => {
 
 router.get("/book/:bookID", (req, res) => {
   const { bookID } = req.params;
-  console.log("Book ID = " + bookID);
+  //console.log(`Book ID:  ${bookID}`);
 
   Request.find({ book: bookID })
     .populate("requestingUser")
@@ -108,30 +106,44 @@ router.get("/book/:bookID", (req, res) => {
         .populate("requests")
         .populate("owner")
         .then((foundBook) => {
-          //console.log(`Found request: ${foundRequests}`);
-          console.log(`Found book: ${foundBook}`);
+          // // console.log(`Owner of the found book: ${foundBook.owner._id}`);
+          // console.log(`User ID: ${req.session.user._id}`);
+          let isLoggedIn = false;
+          let isItOwnBook = false;
+          let alreadyMadeRequest = false;
+          if (req.session.user) {
+            isLoggedIn = true;
+            if (
+              req.session.user._id.toString() === foundBook.owner._id.toString()
+            ) {
+              isItOwnBook = true;
+            }
+            if (
+              foundBook.requests.filter((singleRequest) => {
+                console.log(
+                  `singleRequest.id: ${singleRequest._id}, foundRequest._id: ${foundRequests._id}`
+                );
+                return singleRequest._id === foundRequests._id;
+              }).length !== 0
+            ) {
+              alreadyMadeRequest = true;
+            }
+          }
+
+          console.log(
+            `isLoggedIn: ${isLoggedIn}, isItOwnBook: ${isItOwnBook}, alreadyMadeRequest: ${alreadyMadeRequest}`
+          );
+          // console.log(`Found request: ${foundRequests}`);
+          // console.log(`Found book: ${foundBook}`);
           res.render("books/book", {
             book: foundBook,
             requests: foundRequests,
+            isLoggedIn,
+            isItOwnBook,
+            alreadyMadeRequest,
           });
         });
     });
-
-  // Book.findById(bookID)
-  //   .populate("owner")
-  //   .populate("requests")
-  //   .then((foundBook) => {
-  //     Request.find({ book: foundBook._id })
-  //       .populate("requestingUser")
-  //       .populate("book")
-  //       .then((foundRequest) => {
-  //         console.log("Found book: ", foundBook);
-  //         console.log(`Found request: ${foundRequest}`);
-  //         res.render("books/book", { book: foundBook, requests: foundRequest });
-  //       });
-  // console.log("Found book: ", foundBook);
-  // res.render("books/book", { book: foundBook });
-  //});
 });
 
 module.exports = router;

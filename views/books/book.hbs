@@ -5,18 +5,28 @@
 <p>Genre: {{book.genre}}</p>
 <p>Condition: {{book.condition}}</p>
 <p>Owner: <a href="/user/{{book.owner._id}}">{{book.owner.username}}</a></p>
-
-<form action="/request/{{this._id}}" method="POST">
+{{#if alreadyMadeRequest}}
+<p>You have made a request for this book.</p>
+{{else}}
+{{#unless isItOwnBook}}
+<form action="/request/{{book._id}}" method="POST">
   <button>REQUEST</button>
 </form>
+{{/unless}}
+{{/if}}
 
 {{#each requests}}
 <p><a href="/user/{{this.requestingUser._id}}">{{this.requestingUser.username}}</a> has requested this book.</p>
 
-{{!-- {{#if true}}
+{{#if ../isItOwnBook}}
+{{!-- {{#if ../../success}} --}}
+{{!-- <p>{{../../success}}</p> --}}
+{{!-- {{else}} --}}
 
-{{else}}
-<button>ACCEPT REQUEST</button>
+<form action="/{{this._id}}" method="POST">
+  <button>ACCEPT REQUEST</button>
+</form>
 
-{{/if}} --}}
+{{/if}}
+
 {{/each}}
