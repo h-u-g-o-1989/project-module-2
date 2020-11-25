@@ -1,8 +1,8 @@
 /* -------------TOP NAV------------ */
-
 .topnav {
   overflow: hidden;
   background-color: #ecd8c9;
+  margin-top: -5px;
 }
 
 .topnav a {
@@ -65,6 +65,7 @@
 /* -------------BODY------------- */
 body {
   margin: 0;
+  padding: 0;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #fbfaf6;
 }
@@ -82,49 +83,84 @@ h1 {
   border: 1px solid #ba8871;
 }*/
 
-/* ----------------FOOTER------------------- */
-@media only screen and (max-width: 768px) {
-  /* For mobile phones: */
-  .footer_main {
-    padding: 0px 0px 50px 0px;
-  }
-}
-
-.trustlogos {
-  content: url(https://www.authenticireland.com/wp-content/uploads/2018/04/TopTrust1.png);
-  margin: 10px auto;
-  max-width: 100%;
-}
-
-.footer_trust_top {
-  width: 100%;
-  margin: 20px auto;
-  text-align: center;
-}
-
-.footer_trust_top p {
-  font-family: Arial;
-  font-size: 18px;
-  font-weight: 400;
-  color: rgb(0, 0, 0, 0.5);
-}
-
-.footer-left {
-  padding-left: 0px;
-  justify-content: flex-start;
-}
-.footer-right {
-  margin: 0 auto;
+/* -------------- CARDS ----------- */
+.book-container {
   display: flex;
-  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin: 20px 0 50px 0;
+  position: center;
 }
 
-.footer_main {
-  margin: 20px 0px 20px 0px;
+.book-card {
+  background-color: white;
+  border: 1px solid #ba8871;
+  width: 300px;
+  height: 270px;
+  display: flex;
+  float: left;
+  box-sizing: border-box;
+  justify-content: center;
+  border-radius: 15px;
+  padding: 10px 10px;
+  margin: 20px 10px 0 20px;
+  border-radius: 15px;
+  box-shadow: 1px 1px 3px #fbfaf6;
+  text-decoration: none;
+  font-size: 17px;
+  overflow: hidden;
+  flex-direction: column;
 }
 
-.footer_copyright p {
-  font-size: 12px;
-  color: rgb(0, 0, 0, 0.5);
-  padding-top: 20px;
+.p-card {
+  color: #433f4e;
+  font-size: 15px;
+  max-width: 450px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+}
+
+.book-card a {
+  padding: 0 5px;
+}
+
+.book-card button {
+  background-color: #aebaa2;
+  color: white;
+  border-radius: 5px;
+  border: 1px solid white;
+  padding: 5px 10px;
+  margin: 5px 10px;
+  float: right;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* -------------BODY-ODY-ODY---------- */
+
+.instructions-main {
+  padding: 20px 30px;
+  display: block;
+  margin: 30px 30px;
+  background-color: white;
+  width: 90%;
+  align-items: center;
+}
+
+.h3-about {
+  color: #aebaa2;
+  font-size: 20px;
+}
+
+.p-about {
+  font-size: 16px;
+}
+
+/* -------------- FOOTER ----------- */
+footer {
+  background-color: #ecd8c9;
+  height: 200px;
 }
