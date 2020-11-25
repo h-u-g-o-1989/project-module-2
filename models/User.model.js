@@ -25,12 +25,7 @@ const userSchema = new Schema({
       ref: `Book`,
     },
   ],
-  wishList: [
-    {
-      type: Schema.Types.ObjectID,
-      ref: `Book`,
-    },
-  ],
+  /*wishList: [],*/
   bookScore: {
     type: Number,
     default: 0,
