@@ -49,12 +49,7 @@ router.post("/new-book", (req, res) => {
     requests,
     owner: req.session.user._id,
   }).then((createdBook) => {
-    Book.findById(createdBook._id)
-      .populate("owner")
-      .exec((err, populatedBook) => {
-        console.log("Populated Book: " + populatedBook);
-      });
-    // after you create a post, the property author was added to it, but the user is not aware of that, so we must edit the user and the post to the user's posts array
+    //console.log("The book you just added to your giveaway list is:", createdBook)
     User.findByIdAndUpdate(
       req.session.user._id,
       {
@@ -104,9 +99,39 @@ router.get("/book/delete/:bookID", (req, res) => {
 router.get("/book/:bookID", (req, res) => {
   const { bookID } = req.params;
   console.log("Book ID = " + bookID);
-  Book.findById(bookID).then((foundBook) => {
-    res.render("books/book", { book: foundBook });
-  });
+
+  Request.find({ book: bookID })
+    .populate("requestingUser")
+    .populate("book")
+    .then((foundRequests) => {
+      Book.findById({ _id: bookID })
+        .populate("requests")
+        .populate("owner")
+        .then((foundBook) => {
+          //console.log(`Found request: ${foundRequests}`);
+          console.log(`Found book: ${foundBook}`);
+          res.render("books/book", {
+            book: foundBook,
+            requests: foundRequests,
+          });
+        });
+    });
+
+  // Book.findById(bookID)
+  //   .populate("owner")
+  //   .populate("requests")
+  //   .then((foundBook) => {
+  //     Request.find({ book: foundBook._id })
+  //       .populate("requestingUser")
+  //       .populate("book")
+  //       .then((foundRequest) => {
+  //         console.log("Found book: ", foundBook);
+  //         console.log(`Found request: ${foundRequest}`);
+  //         res.render("books/book", { book: foundBook, requests: foundRequest });
+  //       });
+  // console.log("Found book: ", foundBook);
+  // res.render("books/book", { book: foundBook });
+  //});
 });
 
 module.exports = router;

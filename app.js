@@ -33,6 +33,12 @@ app.use("/", userRoutes);
 const bookRoutes = require("./routes/books");
 app.use("/", bookRoutes);
 
+const requestRoutes = require("./routes/requests");
+app.use("/", requestRoutes);
+
+const searchRoutes = require("./routes/search");
+app.use("/", searchRoutes);
+
 // ❗ To handle errors. Routes that dont exist or errors that you handle in specfic routes
 require("./error-handling")(app);
 

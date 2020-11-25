@@ -1,14 +1,4 @@
-<h1>This is the HOME PAGE of {{title}}</h1>
-
-{{#if user}}
-
-<p>Welcome to {{title}}, {{user.username}}</p>
-<h2>20 latest books here!!</h2>
-{{else}}
-<a href="/auth/signup">Sign up</a>
-<a href="/auth/login">Log in</a>
-
-{{/if}}
+<h1>THESE ARE YOUR SEARCH RESULTS YOU SNEAKY BOOKWORM</h1>
 
 {{#each books}}
 <p>Title: <a href="/book/{{this._id}}">{{this.title}}</a> </p>
@@ -19,6 +9,7 @@
 <form action="/request/{{this._id}}" method="POST">
   <button>REQUEST</button>
 </form>
+
 <!--UPDATE WHEN YOU HAVE A REQUEST -->
 <br />
 {{/each}}
