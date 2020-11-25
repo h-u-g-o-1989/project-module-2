@@ -1,12 +1,13 @@
-<h1>This is the HOME PAGE of {{title}}</h1>
+<h1>Welcome to {{title}}</h1>
+
 
 {{#if user}}
 
-<p>Welcome to {{title}}, {{user.username}}</p>
+<p>Ready to ensure a steady book suply to your shelf, {{user.username}}?</p>
 <h2>20 latest books here!!</h2>
 {{else}}
-<a href="/auth/signup">Sign up</a>
-<a href="/auth/login">Log in</a>
+<h2>Welcome to {{title}}!</h2>
+<p>Sign in or log in to start browsing books!</p>
 
 {{/if}}
 

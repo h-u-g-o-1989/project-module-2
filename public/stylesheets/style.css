@@ -1,11 +1,130 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+/* -------------TOP NAV------------ */
 
-a {
-  color: #00b7ff; }
+.topnav {
+  overflow: hidden;
+  background-color: #ecd8c9;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ba8871;
+  color: white;
+}
+
+.topnav a.active {
+  background-color: #aebaa2;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+.topnav .search-container {
+  float: right;
+}
+
+.topnav input[type="text"] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 15px;
+  border: none;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ba8871;
+  color: white;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.topnav .search-container button:hover {
+  background: #aebaa2;
+}
+
+/* COVER IMG */
+.coverimg {
+  height: 300px;
+  width: 100%;
+}
+
+/* BODY */
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fbfaf6;
+}
 
 h1 {
-  color: 15px; }
+  color: #433f4e;
+  margin: 30px;
+}
 
-/*# sourceMappingURL=style.css.map */
+/*p {
+  color: #433f4e;
+  margin: 30px;
+  background-color: white;
+  padding: 30px;
+  border: 1px solid #ba8871;
+}*/
+
+/* ----------------FOOTER------------------- */
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .footer_main {
+    padding: 0px 0px 50px 0px;
+  }
+}
+
+.trustlogos {
+  content: url(https://www.authenticireland.com/wp-content/uploads/2018/04/TopTrust1.png);
+  margin: 10px auto;
+  max-width: 100%;
+}
+
+.footer_trust_top {
+  width: 100%;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.footer_trust_top p {
+  font-family: Arial;
+  font-size: 18px;
+  font-weight: 400;
+  color: rgb(0, 0, 0, 0.5);
+}
+
+.footer-left {
+  padding-left: 0px;
+  justify-content: flex-start;
+}
+.footer-right {
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footer_main {
+  margin: 20px 0px 20px 0px;
+}
+
+.footer_copyright p {
+  font-size: 12px;
+  color: rgb(0, 0, 0, 0.5);
+  padding-top: 20px;
+}

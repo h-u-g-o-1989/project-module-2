@@ -17,7 +17,7 @@ const projectName = "shelf-assured";
 const capitalized = (string) =>
   string[0].toUpperCase() + string.slice(1).toLowerCase();
 
-app.locals.title = `${capitalized(projectName)}`;
+app.locals.title = `Shelf-Assured`;
 // default value for title local
 
 // 👇 Start handling routes here
