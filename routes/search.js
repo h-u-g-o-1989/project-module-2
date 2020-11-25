@@ -9,10 +9,6 @@ router.post("/search", (req, res) => {
   Book.find({ $or: [{ title: search }, { author: search }] })
     .populate("owner")
     .then((populatedResults) => {
-      console.log(
-        "This is the populated array you are sending to the get request: ",
-        populatedResults
-      );
       res.render("results", { books: populatedResults });
     });
 });

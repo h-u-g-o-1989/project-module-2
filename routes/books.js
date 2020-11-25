@@ -99,13 +99,39 @@ router.get("/book/delete/:bookID", (req, res) => {
 router.get("/book/:bookID", (req, res) => {
   const { bookID } = req.params;
   console.log("Book ID = " + bookID);
-  Book.findById(bookID)
-    .populate("owner")
-    .populate("requests")
-    .then((foundBook) => {
-      console.log("Found book: ", foundBook);
-      res.render("books/book", { book: foundBook });
+
+  Request.find({ book: bookID })
+    .populate("requestingUser")
+    .populate("book")
+    .then((foundRequests) => {
+      Book.findById({ _id: bookID })
+        .populate("requests")
+        .populate("owner")
+        .then((foundBook) => {
+          //console.log(`Found request: ${foundRequests}`);
+          console.log(`Found book: ${foundBook}`);
+          res.render("books/book", {
+            book: foundBook,
+            requests: foundRequests,
+          });
+        });
     });
+
+  // Book.findById(bookID)
+  //   .populate("owner")
+  //   .populate("requests")
+  //   .then((foundBook) => {
+  //     Request.find({ book: foundBook._id })
+  //       .populate("requestingUser")
+  //       .populate("book")
+  //       .then((foundRequest) => {
+  //         console.log("Found book: ", foundBook);
+  //         console.log(`Found request: ${foundRequest}`);
+  //         res.render("books/book", { book: foundBook, requests: foundRequest });
+  //       });
+  // console.log("Found book: ", foundBook);
+  // res.render("books/book", { book: foundBook });
+  //});
 });
 
 module.exports = router;
