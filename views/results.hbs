@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1>THESE ARE YOUR SEARCH RESULTS YOU SNEAKY BOOKWORM</h1>
 
 {{#each books}}
@@ -9,4 +10,20 @@
 <button>REQUEST</button>
 <!--UPDATE WHEN YOU HAVE A REQUEST -->
 <br />
+=======
+<h1>THESE ARE YOUR SEARCH RESULTS YOU SNEAKY BOOKWORM</h1>
+
+{{#each books}}
+<p>Title: <a href="/book/{{this._id}}">{{this.title}}</a> </p>
+<p>Author: {{this.author}}</p>
+<p>Genre: {{this.genre}}</p>
+<p>Condition: {{this.condition}}</p>
+<p>Owner: <a href="/user/{{this.owner._id}}">{{this.owner.username}}</a></p>
+<form action="/request/{{this._id}}" method="POST">
+  <button>REQUEST</button>
+</form>
+
+<!--UPDATE WHEN YOU HAVE A REQUEST -->
+<br />
+>>>>>>> fd3254455ce0143dca5715b4a2f33908b9d93907
 {{/each}}

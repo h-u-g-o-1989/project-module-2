@@ -6,8 +6,10 @@
 <p>Genre: {{this.genre}}</p>
 <p>Condition: {{this.condition}}</p>
 <p>Owner: <a href="/user/{{this.owner._id}}">{{this.owner.username}}</a></p>
+
 <form action="/request/{{this._id}}" method="POST">
   <button>REQUEST</button>
 </form>
+
 <br />
 {{/each}}

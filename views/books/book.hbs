@@ -6,4 +6,17 @@
 <p>Condition: {{book.condition}}</p>
 <p>Owner: <a href="/user/{{book.owner._id}}">{{book.owner.username}}</a></p>
 
-<button>REQUEST</button>
+<form action="/request/{{this._id}}" method="POST">
+  <button>REQUEST</button>
+</form>
+
+{{#each requests}}
+<p><a href="/user/{{this.requestingUser._id}}">{{this.requestingUser.username}}</a> has requested this book.</p>
+
+{{!-- {{#if true}}
+
+{{else}}
+<button>ACCEPT REQUEST</button>
+
+{{/if}} --}}
+{{/each}}

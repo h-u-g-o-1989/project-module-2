@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1>This is the HOME PAGE of {{title}}</h1>
 
 {{#if user}}
@@ -19,4 +20,29 @@
 <button>REQUEST</button>
 <!--UPDATE WHEN YOU HAVE A REQUEST -->
 <br />
+=======
+<h1>This is the HOME PAGE of {{title}}</h1>
+
+{{#if user}}
+
+<p>Welcome to {{title}}, {{user.username}}</p>
+<h2>20 latest books here!!</h2>
+{{else}}
+<a href="/auth/signup">Sign up</a>
+<a href="/auth/login">Log in</a>
+
+{{/if}}
+
+{{#each books}}
+<p>Title: <a href="/book/{{this._id}}">{{this.title}}</a> </p>
+<p>Author: {{this.author}}</p>
+<p>Genre: {{this.genre}}</p>
+<p>Condition: {{this.condition}}</p>
+<p>Owner: <a href="/user/{{this.owner._id}}">{{this.owner.username}}</a></p>
+<form action="/request/{{this._id}}" method="POST">
+  <button>REQUEST</button>
+</form>
+<!--UPDATE WHEN YOU HAVE A REQUEST -->
+<br />
+>>>>>>> fd3254455ce0143dca5715b4a2f33908b9d93907
 {{/each}}
