@@ -1,11 +1,166 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+/* -------------TOP NAV------------ */
+.topnav {
+  overflow: hidden;
+  background-color: #ecd8c9;
+  margin-top: -5px;
+}
 
-a {
-  color: #00b7ff; }
+.topnav a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ba8871;
+  color: white;
+}
+
+.topnav a.active {
+  background-color: #aebaa2;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+.topnav .search-container {
+  float: right;
+}
+
+.topnav input[type="text"] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 15px;
+  border: none;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ba8871;
+  color: white;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.topnav .search-container button:hover {
+  background: #aebaa2;
+}
+
+/* -------------COVER IMG------------- */
+.coverimg {
+  height: 300px;
+  width: 100%;
+}
+
+/* -------------BODY------------- */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fbfaf6;
+}
 
 h1 {
-  color: 15px; }
+  color: #433f4e;
+  margin: 30px;
+}
 
-/*# sourceMappingURL=style.css.map */
+/*p {
+  color: #433f4e;
+  margin: 30px;
+  background-color: white;
+  padding: 30px;
+  border: 1px solid #ba8871;
+}*/
+
+/* -------------- CARDS ----------- */
+.book-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px 0 50px 0;
+  position: center;
+}
+
+.book-card {
+  background-color: white;
+  border: 1px solid #ba8871;
+  width: 300px;
+  height: 270px;
+  display: flex;
+  float: left;
+  box-sizing: border-box;
+  justify-content: center;
+  border-radius: 15px;
+  padding: 10px 10px;
+  margin: 20px 10px 0 20px;
+  border-radius: 15px;
+  box-shadow: 1px 1px 3px #fbfaf6;
+  text-decoration: none;
+  font-size: 17px;
+  overflow: hidden;
+  flex-direction: column;
+}
+
+.p-card {
+  color: #433f4e;
+  font-size: 15px;
+  max-width: 450px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+}
+
+.book-card a {
+  padding: 0 5px;
+}
+
+.book-card button {
+  background-color: #aebaa2;
+  color: white;
+  border-radius: 5px;
+  border: 1px solid white;
+  padding: 5px 10px;
+  margin: 5px 10px;
+  float: right;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* -------------BODY-ODY-ODY---------- */
+
+.instructions-main {
+  padding: 20px 30px;
+  display: block;
+  margin: 30px 30px;
+  background-color: white;
+  width: 90%;
+  align-items: center;
+}
+
+.h3-about {
+  color: #aebaa2;
+  font-size: 20px;
+}
+
+.p-about {
+  font-size: 16px;
+}
+
+/* -------------- FOOTER ----------- */
+footer {
+  background-color: #ecd8c9;
+  height: 200px;
+}

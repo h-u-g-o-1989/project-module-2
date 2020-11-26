@@ -1,20 +1,33 @@
-<h1>This is the HOME PAGE of {{title}}</h1>
+<h1>Welcome to {{title}}</h1>
 
+<!-- IF LOGGED IN, WELCOME BACK & CTA BROWSE -->
 {{#if user}}
-
-<p>Welcome to {{title}}, {{user.username}}</p>
+<p>Ready to ensure a steady book suply to your shelf, {{user.username}}?</p>
 <h2>20 latest books here!!</h2>
 {{else}}
-<a href="/auth/signup">Sign up</a>
-<a href="/auth/login">Log in</a>
-
+<!-- IF NOT LOGGED IN; DISPLAY INSTRUCTIONS -->
+<section class="instructions-main">
+  <h3 class="h3-about">About us</h3>
+  <p class="p-about"></p>
+  <p class="p-about">Shelf-Assured is an online book exchange service that helps you connect with other
+    avid
+    readers just like yourself. </p>
+</section>
 {{/if}}
 
-{{#each books}}
-<p>Title: <a href="/book/{{this._id}}">{{this.title}}</a> </p>
-<p>Author: {{this.author}}</p>
-<p>Genre: {{this.genre}}</p>
-<p>Condition: {{this.condition}}</p>
-<p>Owner: <a href="/user/{{this.owner._id}}">{{this.owner.username}}</a></p>
+<!-- BOOK CARDS -->
+<section class="book-container">
+  {{#each books}}
+  <section class="book-card">
+    <div class="cards">
+      <p class="p-card">Title: <a href="/book/{{this._id}}">{{this.title}}</a> </p>
+      <p class="p-card">Author: {{this.author}}</p>
+      <p class="p-card">Genre: {{this.genre}}</p>
+      <p class="p-card">Condition: {{this.condition}}</p>
+      <p class="p-card">Owner: <a href="/user/{{this.owner._id}}"> {{this.owner.username}}</a></p>
 
-{{/each}}
+
+    </div>
+  </section>
+  {{/each}}
+</section>
