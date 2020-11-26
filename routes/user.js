@@ -95,7 +95,11 @@ router.post("/update-password", (req, res) => {
 router.get("/profile", (req, res) => {
   const { user } = req.session;
   Request.find({ requestingUser: user._id, status: "Accepted" })
-    .populate("book")
+    .populate({
+      path: "book",
+      model: "Book",
+      populate: { path: "owner", model: "User" },
+    })
     .then((acceptedRequests) => {
       console.log(`Here are the accepted requests: ${acceptedRequests}`);
       res.render("user/profile", { user, requests: acceptedRequests });

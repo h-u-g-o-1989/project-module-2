@@ -10,6 +10,7 @@ router.post("/requests/:bookID", (req, res) => {
     return res.redirect("/auth/signup");
   }
 
+  /*
   Request.create({ requestingUser: user._id, book: bookID }).then(
     (newRequest) => {
       console.log(`New request:  ${newRequest}`);
@@ -21,29 +22,45 @@ router.post("/requests/:bookID", (req, res) => {
     }
   );
 });
-//THIS IS IMPORTANT
-// Request.find({
-//   requestingUser: user._id,
-//   book: bookID,
-// })
-//   .populate("book")
-//   .populate("requestingUser")
-//   .then((alreadyMade) => {
-//     console.log(`This is not the first time you try to request this book`);
-//     res.redirect(`/book/${bookID}`);
-//   })
-//   .catch((notMade) => {
-//     console(`This is the first time you try to request this book`);
-//     Request.create({ requestingUser: user._id, book: bookID }).then(
-//       (newRequest) => {
-//         console.log(`New request:  ${newRequest}`);
-//         Book.findByIdAndUpdate(bookID, {
-//           $addToSet: { requests: newRequest._id },
-//         }).then(() => {
-//           res.redirect(`/book/${bookID}`);
-//         });
-//       }
-//     );
+*/
+
+  //THIS IS IMPORTANT
+  Request.find({
+    requestingUser: user._id,
+    book: bookID,
+  })
+    //.populate("book")
+    //.populate("requestingUser")
+    .then((alreadyMade) => {
+      console.log(
+        `This is not the first time you try to request this book`,
+        alreadyMade
+      );
+      if (!alreadyMade.length) {
+        Request.create({ requestingUser: user._id, book: bookID })
+          .then((newRequest) => {
+            console.log(`New request:  ${newRequest}`);
+            Book.findByIdAndUpdate(bookID, {
+              $addToSet: { requests: newRequest._id },
+            })
+              .then(() => {
+                res.redirect(`/book/${bookID}`);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        res.redirect(`/book/${bookID}`);
+      }
+    })
+    .catch((err) => {
+      console(`This is the first time you try to request this book`, err);
+    });
+});
 
 //console.log("user: ", JSON.stringify(user));
 //});

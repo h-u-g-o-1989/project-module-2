@@ -4,7 +4,8 @@
 <p>{{user.location}}</p>
 
 {{#each requests}}
-<p>Your request for {{this.book.title}} has been accepted!</p>
+<p>Your request for {{book.title}} has been accepted! You can contact {{book.owner.username}} at {{book.owner.email}}
+</p>
 {{/each}}
 
 <a href="/update-settings">Profile settings</a>
