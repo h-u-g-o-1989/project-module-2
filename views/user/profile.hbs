@@ -3,7 +3,10 @@
 <p>{{user.bio}}</p>
 <p>{{user.location}}</p>
 
-<p>Your current book score is {{user.bookScore}}</p>
+{{#each requests}}
+<p>Your request for {{book.title}} has been accepted! You can contact {{book.owner.username}} at {{book.owner.email}}
+</p>
+{{/each}}
 
 <a href="/update-settings">Profile settings</a>
 

@@ -20,6 +20,13 @@ const capitalized = (string) =>
 app.locals.title = `Shelf-Assured`;
 // default value for title local
 
+app.use((req, res, next) => {
+  if (req.session.user) {
+    res.locals.user = req.session.user;
+  }
+  next();
+});
+
 // 👇 Start handling routes here
 const index = require("./routes/index");
 app.use("/", index);

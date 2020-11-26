@@ -1,1 +1,14 @@
 <h1>My wish list</h1>
+{{#unless entries}}
+<p>Your wishlist is currently empty!</p>
+{{/unless}}
+{{#each entries}}
+<p>{{this.status}}</p>
+<p>Title: <a href="/book/{{this.book._id}}">{{this.book.title}}</a></p>
+<p>Author: {{this.book.author}}</p>
+<p>Genre: {{this.book.genre}}</p>
+<p>Condition: {{this.book.condition}}</p>
+
+<button><a href="/requests/delete/{{this._id}}">Cancel request</a></button>
+
+{{/each}}

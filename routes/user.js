@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User.model");
+const Request = require("../models/Request.model");
 const bcrypt = require("bcryptjs");
 
 router.get("/update-settings", (req, res) => {
@@ -93,11 +94,26 @@ router.post("/update-password", (req, res) => {
 
 router.get("/profile", (req, res) => {
   const { user } = req.session;
-  res.render("user/profile", { user });
+  Request.find({ requestingUser: user._id, status: "Accepted" })
+    .populate({
+      path: "book",
+      model: "Book",
+      populate: { path: "owner", model: "User" },
+    })
+    .then((acceptedRequests) => {
+      console.log(`Here are the accepted requests: ${acceptedRequests}`);
+      res.render("user/profile", { user, requests: acceptedRequests });
+    });
 });
 
 router.get("/user/:userID", (req, res) => {
   const { userID } = req.params;
+
+  console.log(JSON.stringify(req.session.user._id));
+  if (req.session.user._id.toString() === userID.toString()) {
+    console.log(`The user you're trying to reach is yourself`);
+    return res.redirect("/profile");
+  }
   User.findById(userID).then((foundUser) => {
     res.render("user/user", { user: foundUser });
   });

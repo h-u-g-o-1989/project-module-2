@@ -9,7 +9,7 @@
 <p>You have made a request for this book.</p>
 {{else}}
 {{#unless isItOwnBook}}
-<form action="/request/{{book._id}}" method="POST">
+<form action="/requests/{{book._id}}" method="POST">
   <button>REQUEST</button>
 </form>
 {{/unless}}
@@ -23,7 +23,7 @@
 {{!-- <p>{{../../success}}</p> --}}
 {{!-- {{else}} --}}
 
-<form action="/{{this._id}}" method="POST">
+<form action="/accept/{{this._id}}" method="POST">
   <button>ACCEPT REQUEST</button>
 </form>
 
