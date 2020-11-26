@@ -3,23 +3,50 @@ const router = express.Router();
 const Book = require("../models/Book.model");
 const Request = require("../models/Request.model");
 
-router.post("/request/:bookID", (req, res, next) => {
+router.post("/request/:bookID", (req, res) => {
   const { bookID } = req.params;
   const { user } = req.session;
   if (!user) {
     return res.redirect("/auth/signup");
   }
-  //THIS IS IMPORTANT
 
-  // Request.find({
-  // requestingUser: user._id,
-  // book: bookID,
-  // }).then((alreadyMade) => {
-  // res.redirect(`/book/${bookID}`);
-  // });
-
-  //console.log("user: ", JSON.stringify(user));
+  Request.create({ requestingUser: user._id, book: bookID }).then(
+    (newRequest) => {
+      console.log(`New request:  ${newRequest}`);
+      Book.findByIdAndUpdate(bookID, {
+        $addToSet: { requests: newRequest._id },
+      }).then(() => {
+        res.redirect(`/book/${bookID}`);
+      });
+    }
+  );
 });
+//THIS IS IMPORTANT
+// Request.find({
+//   requestingUser: user._id,
+//   book: bookID,
+// })
+//   .populate("book")
+//   .populate("requestingUser")
+//   .then((alreadyMade) => {
+//     console.log(`This is not the first time you try to request this book`);
+//     res.redirect(`/book/${bookID}`);
+//   })
+//   .catch((notMade) => {
+//     console(`This is the first time you try to request this book`);
+//     Request.create({ requestingUser: user._id, book: bookID }).then(
+//       (newRequest) => {
+//         console.log(`New request:  ${newRequest}`);
+//         Book.findByIdAndUpdate(bookID, {
+//           $addToSet: { requests: newRequest._id },
+//         }).then(() => {
+//           res.redirect(`/book/${bookID}`);
+//         });
+//       }
+//     );
+
+//console.log("user: ", JSON.stringify(user));
+//});
 
 router.post("/accept/:requestID", (req, res) => {
   const { requestID } = req.params;
@@ -54,7 +81,7 @@ router.get("/requests/delete/:requestID", (req, res) => {
   Request.findByIdAndDelete(requestID, () => {
     console.log("Book removed from the wishlist");
   }).then(() => {
-    res.redirect("/books/wish-list");
+    res.render("books/wish-list");
   });
 });
 

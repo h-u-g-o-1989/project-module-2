@@ -127,9 +127,9 @@ router.get("/book/:bookID", (req, res) => {
             }
           }
 
-          console.log(
-            `isLoggedIn: ${isLoggedIn}, isItOwnBook: ${isItOwnBook}, alreadyMadeRequest: ${alreadyMadeRequest}`
-          );
+          // console.log(
+          //   `isLoggedIn: ${isLoggedIn}, isItOwnBook: ${isItOwnBook}, alreadyMadeRequest: ${alreadyMadeRequest}`
+          // );
           // console.log(`Found request: ${foundRequests}`);
           // console.log(`Found book: ${foundBook}`);
           res.render("books/book", {
