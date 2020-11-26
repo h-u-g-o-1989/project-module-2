@@ -3,7 +3,9 @@
 <p>{{user.bio}}</p>
 <p>{{user.location}}</p>
 
-<p>Your current book score is {{user.bookScore}}</p>
+{{#each requests}}
+<p>Your request for {{this.book.title}} has been accepted!</p>
+{{/each}}
 
 <a href="/update-settings">Profile settings</a>
 
