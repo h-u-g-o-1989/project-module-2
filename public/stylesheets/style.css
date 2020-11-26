@@ -8,7 +8,7 @@
 .topnav a {
   float: left;
   display: block;
-  color: white;
+  color: #433f4e;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -22,6 +22,11 @@
 
 .topnav a.active {
   background-color: #aebaa2;
+  color: #433f4e;
+}
+
+.topnav a.active:hover {
+  background-color: #59674c;
   color: white;
 }
 
@@ -58,7 +63,7 @@
 
 /* -------------COVER IMG------------- */
 .coverimg {
-  height: 300px;
+  height: 20vh;
   width: 100%;
 }
 
@@ -72,7 +77,42 @@ body {
 
 h1 {
   color: #433f4e;
-  margin: 30px;
+  text-decoration: underline solid #aebaa2;
+  text-align: center;
+}
+
+h2 {
+  color: #ba8871;
+  font-size: 20px;
+}
+
+.page-title {
+  text-align: center;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: #433f4e;
+}
+
+.dont-stick {
+  display: flex;
+  justify-content: center;
+}
+
+.bio {
+  background-color: white;
+  border: 1px solid #ba8871;
+  margin: 10%;
+  padding: 2% 5%;
+}
+
+.congratulations {
+  text-align: center;
+  border: 3px dotted #aebaa2;
+  margin: 0 5%;
+  background-color: white;
 }
 
 /*p {
@@ -89,6 +129,7 @@ h1 {
   flex-wrap: wrap;
   margin: 20px 0 50px 0;
   position: center;
+  margin-bottom: 12vh;
 }
 
 .book-card {
@@ -122,10 +163,11 @@ h1 {
 
 .book-card a {
   padding: 0 5px;
+  text-decoration: underline;
 }
 
 .book-card button {
-  background-color: #aebaa2;
+  background-color: #ba8871;
   color: white;
   border-radius: 5px;
   border: 1px solid white;
@@ -139,7 +181,29 @@ h1 {
   box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
 }
 
+.centered-card {
+  display: flex;
+  justify-content: center;
+}
+
 /* -------------BODY-ODY-ODY---------- */
+
+.full-page {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.flexed-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.view-size {
+  flex: 1;
+  margin-bottom: 5%;
+}
 
 .instructions-main {
   padding: 20px 30px;
@@ -159,8 +223,72 @@ h1 {
   font-size: 16px;
 }
 
+/*---------------BUTTONS------------*/
+
+.centered-btn {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.green {
+  background-color: #aebaa2;
+  padding: 7px;
+  border: 1px solid #59674c;
+  color: #433f4e;
+  border-radius: 10px;
+  font-size: 17px;
+}
+
+.orange {
+  background-color: #aebaa2;
+  padding: 7px;
+  border: 1px solid #59674c;
+  color: #433f4e;
+  border-radius: 10px;
+  font-size: 17px;
+}
+
 /* -------------- FOOTER ----------- */
 footer {
   background-color: #ecd8c9;
   height: 200px;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  height: 12vh;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+footer img {
+  height: 6vh;
+}
+
+footer aside {
+  width: 30%;
+}
+
+/* -------------- FORMS ----------- */
+
+.login {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 5% 0;
+}
+
+.signup {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 5%;
 }

@@ -1,8 +1,8 @@
 <h1>Welcome to your settings page</h1>
 
 <div>
-    <h2>Update your user profile</h2>
-    <form action="/update-settings" method="POST">
+    <h2 class="page-title">Update your user profile</h2>
+    <form action="/update-settings" method="POST" class="login">
 
         <label for="username">Username</label>
         <input type="text" name="username" id="username" value="{{user.username}}">
@@ -16,7 +16,7 @@
         <input type="text" name="location" value="{{user.location}}">
         <br>
 
-        <button type="submit">Update your profile</button>
+        <button type="submit" class="green">Update your profile</button>
 
     </form>
 </div>
@@ -24,8 +24,8 @@
 <br>
 
 <div>
-    <h2>Update your password</h2>
-    <form action="/update-password" method="POST">
+    <h2 class="page-title">Update your password</h2>
+    <form action="/update-password" method="POST" class="login">
 
         <label>Current password</label>
         <input type="password" name="oldPassword">
@@ -39,7 +39,7 @@
         <input type="password" name="confirmPassword">
         <br>
 
-        <button type="submit">Update your password</button>
+        <button type="submit" class="green">Update your password</button>
 
     </form>
 </div>
