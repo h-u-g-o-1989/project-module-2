@@ -5,7 +5,13 @@ const Request = require("../models/Request.model");
 
 // DISPLAY WISH LIST
 router.get("/books/wish-list", (req, res) => {
-  res.render("books/wish-list");
+  const { user } = req.session;
+  Request.find({ requestingUser: user._id, status: "Pending" })
+    .populate("book")
+    .then((wishlistEntries) => {
+      console.log(wishlistEntries[0]);
+      return res.render("books/wish-list", { entries: wishlistEntries });
+    });
 });
 
 // DISPLAY BOOKS TO GIVE AWAY
@@ -106,6 +112,7 @@ router.get("/book/:bookID", (req, res) => {
         .populate("requests")
         .populate("owner")
         .then((foundBook) => {
+          //console.log(`foundRequests'third element: ${foundRequests[2]}`);
           // // console.log(`Owner of the found book: ${foundBook.owner._id}`);
           // console.log(`User ID: ${req.session.user._id}`);
           let isLoggedIn = false;
@@ -117,16 +124,6 @@ router.get("/book/:bookID", (req, res) => {
               req.session.user._id.toString() === foundBook.owner._id.toString()
             ) {
               isItOwnBook = true;
-            }
-            if (
-              foundBook.requests.filter((singleRequest) => {
-                console.log(
-                  `singleRequest.id: ${singleRequest._id}, foundRequest._id: ${foundRequests._id}`
-                );
-                return singleRequest._id === foundRequests._id;
-              }).length !== 0
-            ) {
-              alreadyMadeRequest = true;
             }
           }
 

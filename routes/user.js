@@ -98,6 +98,12 @@ router.get("/profile", (req, res) => {
 
 router.get("/user/:userID", (req, res) => {
   const { userID } = req.params;
+
+  console.log(JSON.stringify(req.session.user._id));
+  if (req.session.user._id.toString() === userID.toString()) {
+    console.log(`The user you're trying to reach is yourself`);
+    return res.redirect("/profile");
+  }
   User.findById(userID).then((foundUser) => {
     res.render("user/user", { user: foundUser });
   });
