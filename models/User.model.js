@@ -26,10 +26,6 @@ const userSchema = new Schema({
     },
   ],
   /*wishList: [],*/
-  bookScore: {
-    type: Number,
-    default: 0,
-  },
   /*optional stuff:
   status: {
     type: enum

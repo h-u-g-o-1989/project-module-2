@@ -8,7 +8,7 @@ router.get("/", (req, res, next) => {
   const { user } = req.session;
   Book.find()
     .sort({ dateAdded: -1 })
-    .limit(5)
+    .limit(10)
     .populate("owner")
     .then((allTheBooks) => {
       res.render("index", { user: user, books: allTheBooks });
@@ -17,7 +17,7 @@ router.get("/", (req, res, next) => {
 
 router.get("/browse", (req, res) => {
   Book.find()
-    .sort({ dateAdded: -1 })
+    .sort({ author: 1 })
     .populate("owner")
     .then((allTheBooks) => {
       res.render("browse", { books: allTheBooks });
