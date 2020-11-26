@@ -1,14 +1,28 @@
-<h1>Welcome to your PROFILE, {{user.username}}</h1>
+<h1>Welcome to your own Bookingham Palace, {{user.username}}!</h1>
+<div class="dont-stick">
+  <div class="profile-settings">
+    <button class="green"><a href="/update-settings">Profile Settings</a></button>
+    <button class="green"><a href="/books/wish-list">My Requested Books</a></button>
+    <button class="green"><a href="/books/giveaway">My Donations</a></button>
+    <div class="bio">
+      <p><b>Location</b>: {{user.location}}</p>
+    </div>
+    <div class="bio">
+      <p><b>Bio</b>: {{user.bio}}</p>
+    </div>
+  </div>
+</div>
 
-<p>{{user.bio}}</p>
-<p>{{user.location}}</p>
+
+
 
 {{#each requests}}
-<p>Your request for {{book.title}} has been accepted! You can contact {{book.owner.username}} at {{book.owner.email}}
-</p>
+<div class="congratulations">
+  <p><b>Congratulations!</b></p>
+  <p>Your request for {{book.title}} has been accepted! </p>
+  <p>You can contact {{book.owner.username}} at
+    {{book.owner.email}} to arrange the shipment!
+  </p>
+</div>
+
 {{/each}}
-
-<a href="/update-settings">Profile settings</a>
-
-<a href="/books/wish-list">Wish List</a>
-<a href="/books/giveaway">My books to exchange</a>

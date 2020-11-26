@@ -1,14 +1,22 @@
-<h1>My wish list</h1>
+<h1>Your Book Requests</h1>
 {{#unless entries}}
-<p>Your wishlist is currently empty!</p>
+<p>You currently do not have any pending requests! Head over to our <a href="/browse">donations page</a> and take a book
+  around!</p>
 {{/unless}}
-{{#each entries}}
-<p>{{this.status}}</p>
-<p>Title: <a href="/book/{{this.book._id}}">{{this.book.title}}</a></p>
-<p>Author: {{this.book.author}}</p>
-<p>Genre: {{this.book.genre}}</p>
-<p>Condition: {{this.book.condition}}</p>
+<section class="book-container">
+  {{#each entries}}
+  <section class="book-card">
+    <div class="cards">
+      <p class="p-card">{{this.status}}</p>
+      <p class="p-card">Title: <a href="/book/{{this.book._id}}">{{this.book.title}}</a></p>
+      <p class="p-card">Author: {{this.book.author}}</p>
+      <p class="p-card">Genre: {{this.book.genre}}</p>
+      <p class="p-card">Condition: {{this.book.condition}}</p>
+    </div>
+    <button class="orange"><a href="/requests/delete/{{this._id}}">Cancel Request</a></button>
 
-<button><a href="/requests/delete/{{this._id}}">Cancel request</a></button>
+  </section>
 
-{{/each}}
+
+  {{/each}}
+</section>

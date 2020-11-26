@@ -11,43 +11,57 @@
 </head>
 
 <body>
-   <header>
-      <img src="/images/portada.png" alt="background image of books" style="height: auto; max-width: 100%">
-   </header>
+   <div class="full-page">
+      <div class="nav-size">
+         <header>
+            <img src="/images/portada.png" alt="background image of books" style="height: auto; max-width: 100%">
+         </header>
 
 
 
-   <div class="topnav">
-      <a class="active" href="/">Home</a>
-      <a href="/browse">Browse Books</a>
+         <div class="topnav">
+            <a class="active" href="/">Home</a>
+            <a href="/browse">Browse Books</a>
 
-      {{#if user}}
-      <a href="/profile">My profile</a>
-      <a href="/auth/logout">Log out</a>
-      {{else}}
-      <a href="/auth/signup">Sign up</a>
-      <a href="/auth/login">Log in</a>
-      {{/if}}
+            {{#if user}}
+            <a href="/profile">My profile</a>
+            <a href="/auth/logout">Log out</a>
+            {{else}}
+            <a href="/auth/signup">Sign up</a>
+            <a href="/auth/login">Log in</a>
+            {{/if}}
 
 
 
-      <div class="search-container">
-         <form action="/search">
-            <input type="text" placeholder="Search by title or author" name="search">
-            <button type="submit">Search</button>
-         </form>
+            <div class="search-container">
+               <form action="/search" method='POST'>
+                  <input type="text" placeholder="Search by title or author" name="search">
+                  <button type="submit">Search</button>
+               </form>
+            </div>
+         </div>
+      </div>
+
+
+      <div class="view-size">
+         {{{body}}}
+      </div>
+
+
+      <div class="footer-size">
+         <footer>
+            <aside class="copyright">
+               <p>Copyright © 2020 by Shelf-Assured</p>
+               <p>All rights reserved.</p>
+            </aside>
+            <img src="/images/book-icon.png" alt="">
+            <aside class="contact">
+               <p>Contact us at:</p>
+               <p><a href="#">info@shelfassured.com</a></p>
+            </aside>
+         </footer>
       </div>
    </div>
-
-
-   {{{body}}}
-
-   <footer>
-      <div>
-         Footer goes here you intelligent but dehydrated human (drink some water pls)
-      </div>
-   </footer>
-
    <!-- <script src="/javascripts/script.js"></script> -->
 </body>
 

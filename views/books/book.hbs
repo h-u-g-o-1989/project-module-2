@@ -1,16 +1,24 @@
-<h1>This is one individual book</h1>
+<h1>This is {{book.owner.username}}'s copy of {{book.title}}</h1>
 
-<h3>Title: {{book.title}}</h3>
-<p>Author: {{book.author}}</p>
-<p>Genre: {{book.genre}}</p>
-<p>Condition: {{book.condition}}</p>
-<p>Owner: <a href="/user/{{book.owner._id}}">{{book.owner.username}}</a></p>
+<div class="centered-card">
+  <section class="book-container">
+    <section class="book-card">
+      <div class="cards">
+        <p class="p-card">Title: {{book.title}}</p>
+        <p class="p-card">Author: {{book.author}}</p>
+        <p class="p-card">Genre: {{book.genre}}</p>
+        <p class="p-card">Condition: {{book.condition}}</p>
+        <p class="p-card">Owner: <a href="/user/{{book.owner._id}}">{{book.owner.username}}</a></p>
+      </div>
+    </section>
+  </section>
+</div>
 {{#if alreadyMadeRequest}}
 <p>You have made a request for this book.</p>
 {{else}}
 {{#unless isItOwnBook}}
-<form action="/requests/{{book._id}}" method="POST">
-  <button>REQUEST</button>
+<form action="/requests/{{book._id}}" method="POST" class="centered-btn">
+  <button class="green">REQUEST</button>
 </form>
 {{/unless}}
 {{/if}}
@@ -19,12 +27,9 @@
 <p><a href="/user/{{this.requestingUser._id}}">{{this.requestingUser.username}}</a> has requested this book.</p>
 
 {{#if ../isItOwnBook}}
-{{!-- {{#if ../../success}} --}}
-{{!-- <p>{{../../success}}</p> --}}
-{{!-- {{else}} --}}
 
-<form action="/accept/{{this._id}}" method="POST">
-  <button>ACCEPT REQUEST</button>
+<form action="/accept/{{this._id}}" method="POST" class="centered-btn ">
+  <button class="green">ACCEPT REQUEST</button>
 </form>
 
 {{/if}}

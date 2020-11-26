@@ -1,10 +1,14 @@
-<h1>Welcome to {{title}}</h1>
-
+<div class="page-title">
+  <h1>Welcome to {{title}}</h1>
+</div>
 <!-- IF LOGGED IN, WELCOME BACK & CTA BROWSE -->
 {{#if user}}
-<p>Ready to ensure a steady book suply to your shelf, {{user.username}}?</p>
-<h2>20 latest books here!!</h2>
+<div class="page-title">
+  <p>Ready to ensure a steady book suply to your shelf, {{user.username}}?</p>
+  <h2>Check out the latest donations from our generous users!</h2>
+</div>
 {{else}}
+
 <!-- IF NOT LOGGED IN; DISPLAY INSTRUCTIONS -->
 <section class="instructions-main">
   <h3 class="h3-about">About us</h3>
