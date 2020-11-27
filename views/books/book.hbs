@@ -1,37 +1,43 @@
-<h1>This is {{book.owner.username}}'s copy of {{book.title}}</h1>
+<div class="book-view">
+  <h1>This is {{book.owner.username}}'s copy of {{book.title}}</h1>
 
-<div class="centered-card">
-  <section class="book-container">
-    <section class="book-card">
-      <div class="cards">
-        <p class="p-card">Title: {{book.title}}</p>
-        <p class="p-card">Author: {{book.author}}</p>
-        <p class="p-card">Genre: {{book.genre}}</p>
-        <p class="p-card">Condition: {{book.condition}}</p>
-        <p class="p-card">Owner: <a href="/user/{{book.owner._id}}">{{book.owner.username}}</a></p>
-      </div>
+  <div class="centered-card">
+    <section class="book-container">
+      <section class="book-card">
+        <div class="cards">
+          <p class="p-card">Title: {{book.title}}</p>
+          <p class="p-card">Author: {{book.author}}</p>
+          <p class="p-card">Genre: {{book.genre}}</p>
+          <p class="p-card">Condition: {{book.condition}}</p>
+          <p class="p-card">Owner: <a href="/user/{{book.owner._id}}">{{book.owner.username}}</a></p>
+        </div>
+      </section>
     </section>
-  </section>
+  </div>
+
+  {{#if alreadyMadeRequest}}
+  <p class="congratulations">You have made a request for this book.</p>
+  <br>
+  {{else}}
+  {{#unless isItOwnBook}}
+  <form action="/requests/{{book._id}}" method="POST" class="centered-btn">
+    <button class="green">REQUEST</button>
+  </form>
+  <br>
+  {{/unless}}
+  {{/if}}
+
+  {{#each requests}}
+  <p class="congratulations"><a href="/user/{{this.requestingUser._id}}">{{this.requestingUser.username}}</a> has
+    requested this book.</p>
+
+  {{#if ../isItOwnBook}}
+  <br>
+  <form action="/accept/{{this._id}}" method="POST" class="centered-btn ">
+    <button class="green">ACCEPT REQUEST</button>
+  </form>
+
+  {{/if}}
+
+  {{/each}}
 </div>
-{{#if alreadyMadeRequest}}
-<p>You have made a request for this book.</p>
-{{else}}
-{{#unless isItOwnBook}}
-<form action="/requests/{{book._id}}" method="POST" class="centered-btn">
-  <button class="green">REQUEST</button>
-</form>
-{{/unless}}
-{{/if}}
-
-{{#each requests}}
-<p><a href="/user/{{this.requestingUser._id}}">{{this.requestingUser.username}}</a> has requested this book.</p>
-
-{{#if ../isItOwnBook}}
-
-<form action="/accept/{{this._id}}" method="POST" class="centered-btn ">
-  <button class="green">ACCEPT REQUEST</button>
-</form>
-
-{{/if}}
-
-{{/each}}
