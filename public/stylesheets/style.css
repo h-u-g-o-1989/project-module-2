@@ -219,7 +219,13 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
+  flex: 1;
+}
+
+.accepted {
+  margin-top: -10%;
+  margin-bottom: 15%;
 }
 
 .h3-about {

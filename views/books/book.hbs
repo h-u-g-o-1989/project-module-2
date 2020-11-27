@@ -15,6 +15,10 @@
     </section>
   </div>
 
+
+  {{#if isItAccepted}}
+  <p class="bio accepted">This book has already been donated.</p>
+  {{else}}
   {{#if alreadyMadeRequest}}
   <p class="congratulations">You have made a request for this book.</p>
   <br>
@@ -32,12 +36,12 @@
     requested this book.</p>
 
   {{#if ../isItOwnBook}}
-  <br>
   <form action="/accept/{{this._id}}" method="POST" class="centered-btn ">
     <button class="green">ACCEPT REQUEST</button>
   </form>
-
+  <br>
   {{/if}}
 
   {{/each}}
 </div>
+{{/if}}

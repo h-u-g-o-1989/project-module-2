@@ -113,8 +113,14 @@ router.get("/book/:bookID", (req, res) => {
         .populate("owner")
         .then((foundBook) => {
           //console.log(`foundRequests'third element: ${foundRequests[2]}`);
-          // // console.log(`Owner of the found book: ${foundBook.owner._id}`);
+          console.log(`Found book: ${foundBook}`);
+          console.log(
+            foundBook.requests.find((element) => element.status === "Accepted")
+          );
           // console.log(`User ID: ${req.session.user._id}`);
+          const isItAccepted = foundBook.requests.find(
+            (element) => element.status === "Accepted"
+          );
           let isLoggedIn = false;
           let isItOwnBook = false;
           let alreadyMadeRequest = false;
@@ -138,6 +144,7 @@ router.get("/book/:bookID", (req, res) => {
             isLoggedIn,
             isItOwnBook,
             alreadyMadeRequest,
+            isItAccepted,
           });
         });
     });
