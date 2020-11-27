@@ -1,6 +1,6 @@
 <h1>Edit your book: "{{bookToEdit.title}}"</h1>
 
-<form action="/book/edit/{{bookToEdit._id}}" method="POST">
+<form action="/book/edit/{{bookToEdit._id}}" method="POST" class="signup">
 
   <label for="title">Title: </label>
   <input type="text" name="title" id="username" value="{{bookToEdit.title}}">
@@ -18,6 +18,6 @@
   <input type="text" name="condition" value="{{bookToEdit.condition}}">
   <br>
 
-  <button type="submit">Update Book</button>
+  <button type="submit" class="green">Update Book</button>
 
 </form>
