@@ -1,9 +1,15 @@
-<h1>THESE ARE YOUR SEARCH RESULTS YOU SNEAKY BOOKWORM</h1>
+<h1>Treat Your Shelves</h1>
 
-{{#each books}}
-<p>Title: <a href="/book/{{this._id}}">{{this.title}}</a> </p>
-<p>Author: {{this.author}}</p>
-<p>Genre: {{this.genre}}</p>
-<p>Condition: {{this.condition}}</p>
-<p>Owner: <a href="/user/{{this.owner._id}}">{{this.owner.username}}</a></p>
-{{/each}}
+<section class="book-container">
+  {{#each books}}
+  <section class="book-card">
+    <div class="cards">
+      <p class="p-card">Title: <a href="/book/{{this._id}}">{{this.title}}</a> </p>
+      <p class="p-card">Author: {{this.author}}</p>
+      <p class="p-card">Genre: {{this.genre}}</p>
+      <p class="p-card">Condition: {{this.condition}}</p>
+      <p class="p-card">Owner: <a href="/user/{{this.owner._id}}">{{this.owner.username}}</a></p>
+    </div>
+  </section>
+  {{/each}}
+</section>
